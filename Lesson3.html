@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+            
+        <title>My slides:信息技术[2017.4]</title>
+
+        <meta name="author" content="author: hcy">
+        <meta name="date" content="date: 2017-04-18">
+
+        <style type="text/css">
+            /* custom css can be written here, some examples provided */
+            
+            /* for the base demo */
+            .in-red {color: red !important; text-decoration: underline;}
+            
+            /* for the svg demo */
+            svg .in-red {fill: darkred; fill-opacity: .5; stroke: white;}
+            
+            .dense {font-size: 66%;}
+
+            /* a few nicer slides */
+            .blackbg {background: black !important;}
+            .title-slide ul li { list-style: none; }
+            .title-slide ul {
+                font-size: 20px; color: darkgrey;
+                text-align: center;
+                position: absolute; bottom: 50px; left:0; right: 0;
+            }
+
+            /* for the container styling demo */
+            .bgred {background: #FAA !important;}
+            .zoomed-out {
+                transform: rotate(45deg) scale(0.5, 0.5);
+                transition: 1s transform;
+            }
+            /* show last sub slide */
+            .deck-container.lastsubslide:not(.no-status)::after {
+               position: absolute;
+               right: 0; bottom: 0;
+               content: "⛶";
+               color: grey;
+               font-size: 40px;
+            }
+        </style>
+
+
+	<script src="deck-packed.js"></script>
+        <script>
+            var cssAndJs = ["light-red-dense.css"]; // include the theme (can add any css or js to the list)
+            var options = {}; // to override default deck.js options
+            includedeck(cssAndJs, options);
+        </script>
+    </head>
+    <body>
+        <div class="deck-container">
+
+            <!-- splash screen when loading -->
+            <div class="deck-loading-splash" style="background: black; color: chartreuse;">
+                <span class="vcenter" style="font-size: 30px; font-family: Arial; ">Please wait, while the deck is loading…</span>
+            </div>
+
+
+            <!-- --------------------------- -->
+            <!-- slides in extended markdown -->
+
+
+            <section class="smart">
+# Welcome
+
+# Lesson3
+
+## 选择结构
+- 文本框输入一个数，如果这个数大于0,label1显示正数，否则显示负数
+
+## 选择结构
+- 文本框输入一个数，如果这个数大于0,label1显示正数，否则显示负数
+```basic
+  Dim n as integer
+  n=val(text1.Text)
+  if n>0 then 
+    label1.caption="正数" 
+  else 
+    label1.caption="负数"
+  end if  
+```
+- 有没有问题？？{slide}
+- 没有考虑输入数为0的情况{slide}
+
+## 选择结构
+- 修正：文本框输入一个数，如果这个数大于0,label1显示正数，等于0显示0,否则显示负数
+
+## 选择结构
+- 修正：文本框输入一个数，如果这个数大于0,label1显示正数，等于0显示0,否则显示负数
+
+```basic
+Dim n as integer
+n=val(text1.Text)
+if n>0 then 
+  label1.caption="正数" 
+else 
+  if n=0 then
+    label1.caption="0"
+  else
+    label1.caption="负数"
+  end if    
+end if  
+```
+
+## 选择结构
+- 修正：文本框输入一个数，如果这个数大于0,label1显示正数，等于0显示0,否则显示负数
+
+<div>
+<div id="leftdiv" style="width: 45%; float: left; font-size: 20px;">
+```basic
+Dim n as integer
+n=val(text1.Text)
+if n>0 then 
+  label1.caption="正数" 
+else 
+  if n=0 then
+    label1.caption="0"
+  else
+    label1.caption="负数"
+  end if    
+end if  
+{slide}
+```
+</div>
+<div id="rightdiv" style="width: 45%; float: right; font-size: 20px;">
+```basic
+Dim n as integer
+n=val(text1.Text)
+if n>0 then 
+  label1.caption="正数" 
+else 
+  if n< 0 then
+    label1.caption="负数"
+  else
+    label1.caption="0"
+  end if    
+end if  
+{slide}
+```
+</div>
+</div>
+
+## 循环结构
+- 重复执行语句、操作
+- 例：列表框添加10个1{slide}
+<div>
+<div id="leftdiv" style="width: 45%; float: left; font-size: 20px;">
+```basic
+List1.AddItem "1"
+List1.AddItem "1"
+List1.AddItem "1"
+List1.AddItem "1"
+List1.AddItem "1"
+List1.AddItem "1"
+List1.AddItem "1"
+List1.AddItem "1"
+List1.AddItem "1"
+List1.AddItem "1"
+{slide}
+```
+</div>
+<div id="rightdiv" style="width: 45%; float: right; font-size: 20px;">
+```basic
+Dim i as integer
+for i=1 to 10 step 1 
+  List1.AddItem "1"
+next i  
+{slide}
+```
+</div>
+</div>
+
+## 循环结构
+- 例：列表框添加10个1
+<div>
+<div id="leftdiv" style="width: 45%; float: left; font-size: 20px;">
+```basic
+Dim i as integer
+for i=1 to 10 step 1 
+  List1.AddItem "1"
+next i 
+{slide}
+```
+</div>
+<div id="rightdiv" style="width: 45%; float: right; font-size: 20px;">
+```basic
+Dim i as integer
+for i=0 to 9 step 1 
+  List1.AddItem "1"
+next i  
+{slide}
+```
+</div>
+</div>
+<div>
+<div id="leftdiv" style="width: 45%; float: left; font-size: 20px;">
+```basic
+Dim i as integer
+for i=1 to 19 step 2 
+  List1.AddItem "1"
+next i  
+{slide}
+```
+</div>
+<div id="rightdiv" style="width: 45%; float: right; font-size: 20px;">
+```basic
+Dim i as integer
+for i=10 to 1 step -1 
+  List1.AddItem "1"
+next i 
+{slide}
+```
+</div>
+</div>
+
+## 循环结构
+- 阅读程序
+<div>
+<div id="leftdiv" style="width: 45%; float: left; font-size: 20px;">
+```basic
+Dim i as integer
+for i=1 to 10 step 1 
+  List1.AddItem str(i)
+next i 
+{slide}
+```
+</div>
+<div id="rightdiv" style="width: 45%; float: right; font-size: 20px;">
+```
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+{slide}
+```
+</div>
+</div>
+
+## 循环结构
+- 阅读程序
+<div>
+<div id="leftdiv" style="width: 45%; float: left; font-size: 20px;">
+```basic
+Dim i as integer
+for i=1 to 10 step 1 
+  List1.AddItem str(i*2)
+next i 
+{slide}
+```
+</div>
+<div id="rightdiv" style="width: 45%; float: right; font-size: 20px;">
+```
+2
+4
+6
+8
+10
+12
+14
+16
+18
+20
+{slide}
+```
+</div>
+</div>
+
+
+## 循环结构
+- 阅读程序
+<div>
+<div id="leftdiv" style="width: 45%; float: left; font-size: 20px;">
+```basic
+Dim i as integer
+for i=1 to 10 step 2 
+  List1.AddItem str(i)
+next i 
+{slide}
+```
+</div>
+<div id="rightdiv" style="width: 45%; float: right; font-size: 20px;">
+```
+1
+3
+5
+7
+9
+{slide}
+```
+</div>
+</div>
+
+## 循环结构
+- 阅读程序
+```basic
+Dim i as integer
+for i=1 to 10 step 3 
+  List1.AddItem str(i*2)
+next i 
+{slide}
+```
+
+```
+2
+8
+14
+20
+{slide}
+```
+
+## 循环结构
+- 阅读程序
+```basic
+Dim i as integer
+for i=1 to 10 step -1 
+  List1.AddItem str(i)
+next i 
+{slide}
+```
+```
+List1没有变化
+{slide}
+```
+
+## 循环结构
+- 阅读程序
+<div>
+<div id="leftdiv" style="width: 45%; float: left; font-size: 20px;">
+```basic
+Dim i as integer
+for i=10 to 1 step -1 
+  List1.AddItem str(i)
+next i 
+{slide}
+```
+</div>
+<div id="rightdiv" style="width: 45%; float: right; font-size: 20px;">
+```
+10
+9
+8
+7
+6
+5
+4
+3
+2
+1
+{slide}
+```
+</div>
+</div>
+
+## 循环结构
+- 阅读程序
+```basic
+Dim i as integer,s as integer
+s=0
+for i=1 to 10 step 1 
+  s=s+1
+next i 
+text1.Text=str(s)
+{slide}
+```
+
+```
+10
+{slide}
+```
+
+## 循环结构
+- 阅读程序
+```basic
+Dim i as integer,s as integer
+s=0
+for i=1 to 10 step 1 
+  s=s+i
+next i 
+text1.Text=str(s)
+{slide}
+```
+
+```
+55
+{slide}
+```
+
+## 循环结构
+- 阅读程序
+```basic
+Dim i as integer,s as integer
+s=0
+for i=1 to 10 step 1 
+  s=s+i*2
+next i 
+text1.Text=str(s)
+{slide}
+```
+
+```
+110
+{slide}
+```
+
+## 循环结构
+- 阅读程序
+```basic
+Dim i as integer,s as integer
+s=1
+for i=1 to 4 step 1 
+  s=s*i
+next i 
+text1.Text=str(s)
+{slide}
+```
+
+```
+24
+{slide}
+```
+
+## 循环结构
+- 终止循环：Exit For
+<div>
+<div id="leftdiv" style="width: 45%; float: left; font-size: 20px;">
+```basic
+Dim i as integer
+for i=1 to 10 step 1 
+  List1.AddItem str(i)
+  if i>5 then 
+    exit for
+  end if
+next i 
+{slide}
+```
+</div>
+<div id="rightdiv" style="width: 45%; float: right; font-size: 20px;">
+```
+1
+2
+3
+4
+5
+{slide}
+```
+</div>
+</div>
+
+## 循环结构(do while...loop)
+```basic
+do while 条件
+  语句
+loop
+{slide}
+```
+
+## 循环结构(do while...loop)
+- 例：列表框添加10个1
+<div>
+<div id="leftdiv" style="width: 45%; float: left; font-size: 20px;">
+```basic
+Dim i as integer
+for i=1 to 10 step 1 
+  List1.AddItem "1"
+next i 
+{slide}
+```
+</div>
+<div id="rightdiv" style="width: 45%; float: right; font-size: 20px;">
+```basic
+Dim i as integer
+i=1
+do while i<=10
+  List1.AddItem "1"
+  i=i+1
+loop
+{slide}
+```
+</div>
+</div>
+
+## 循环结构(do while...loop)
+- 阅读程序
+
+<div>
+<div id="leftdiv" style="width: 45%; float: left; font-size: 20px;">
+```basic
+i=1
+do while i< 10
+  List1.AddItem str(i)
+  i=i+1
+loop
+{slide}
+```
+</div>
+<div id="rightdiv" style="width: 45%; float: right; font-size: 20px;">
+```
+1
+2
+3
+4
+5
+6
+7
+8
+9
+{slide}
+```
+</div>
+</div>
+
+## 循环结构(do while...loop)
+- 阅读程序
+<div>
+<div id="leftdiv" style="width: 45%; float: left; font-size: 20px;">
+```basic
+i=1
+do while i< 10
+  List1.AddItem str(i)
+  i=i+2
+loop
+{slide}
+```
+</div>
+<div id="rightdiv" style="width: 45%; float: right; font-size: 20px;">
+```
+1
+3
+5
+7
+9
+{slide}
+```
+</div>
+</div>
+
+## 循环结构(do while...loop)
+- 阅读程序
+```basic
+i=10
+do while i< 1
+  List1.AddItem str(i)
+  i=i+2
+loop
+{slide}
+```
+
+```
+List1无变化
+{slide}
+```
+
+## 循环结构(do while...loop)
+- 阅读程序
+```basic
+i=10
+do while i>1
+  List1.AddItem str(i)
+loop
+{slide}
+```
+```
+死循环
+{slide}
+```
+
+## 循环结构(do while...loop)
+- 阅读程序
+<div>
+<div id="leftdiv" style="width: 45%; float: left; font-size: 20px;">
+```basic
+i=10
+do while i>1
+  List1.AddItem str(i)
+  i=i+2
+loop
+{slide}
+```
+</div>
+<div id="rightdiv" style="width: 45%; float: right; font-size: 20px;">
+```
+10
+12
+14
+16
+...
+...
+无限循环下去
+{slide}
+```
+</div>
+</div>
+
+## 循环结构(do while...loop)
+- 阅读程序
+<div>
+<div id="leftdiv" style="width: 45%; float: left; font-size: 20px;">
+```basic
+i=10
+do while i>1
+  List1.AddItem str(i)
+  i=i-2
+loop
+{slide}
+```
+</div>
+<div id="rightdiv" style="width: 45%; float: right; font-size: 20px;">
+```
+10
+8
+6
+4
+2
+{slide}
+```
+</div>
+</div>
+
+## 作业
+- P51-P81
+
+# Thank you!
+
+
+            </section>
+
+            <!-- footer and other decorations -->
+            <p class="deck-status deck-progress-10">
+                <span class="deck-status-current"></span> / <span class="deck-status-total"></span> − <span class="var-author">automatically replaced by the author</span> − <span class="var-title">automatically replaced by the title</span>
+            </p>
+
+
+        </div>
+    </body>
+
+</html>
