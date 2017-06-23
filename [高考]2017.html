@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+            
+        <title>My slides:Algorithms[2017.4]</title>
+
+        <meta name="author" content="author: hcy">
+        <meta name="date" content="date: 2017-04-28">
+
+        <style type="text/css">
+            /* custom css can be written here, some examples provided */
+            
+            /* for the base demo */
+            .in-red {color: red !important; text-decoration: underline;}
+            
+            /* for the svg demo */
+            svg .in-red {fill: darkred; fill-opacity: .5; stroke: white;}
+            
+            .dense {font-size: 66%;}
+
+            /* a few nicer slides */
+            .blackbg {background: black !important;}
+            .title-slide ul li { list-style: none; }
+            .title-slide ul {
+                font-size: 20px; color: darkgrey;
+                text-align: center;
+                position: absolute; bottom: 50px; left:0; right: 0;
+            }
+
+            /* for the container styling demo */
+            .bgred {background: #FAA !important;}
+            .zoomed-out {
+                transform: rotate(45deg) scale(0.5, 0.5);
+                transition: 1s transform;
+            }
+            /* show last sub slide */
+            .deck-container.lastsubslide:not(.no-status)::after {
+               position: absolute;
+               right: 0; bottom: 0;
+               content: "⛶";
+               color: grey;
+               font-size: 40px;
+            }
+        </style>
+
+
+	<script src="deck-packed.js"></script>
+        <script>
+            var cssAndJs = ["light-red-dense.css"]; // include the theme (can add any css or js to the list)
+            var options = {}; // to override default deck.js options
+            includedeck(cssAndJs, options);
+        </script>
+    </head>
+    <body>
+        <div class="deck-container">
+
+            <!-- splash screen when loading -->
+            <div class="deck-loading-splash" style="background: black; color: chartreuse;">
+                <span class="vcenter" style="font-size: 30px; font-family: Arial; ">Please wait, while the deck is loading…</span>
+            </div>
+
+
+            <!-- --------------------------- -->
+            <!-- slides in extended markdown -->
+
+
+            <section class="smart">
+# 2017年浙江高考志愿填报
+## 新高考
+- 新高考形成以统一高考招生为主体，分类考试、多元选拔录取模式并存的新格局。
+　　三位一体综合评价招生，除北大、清华等高水平大学在高考志愿填报前完成录取外，其他院校安排在普通类提前录取；高职提前招生实行“一档多投”；单独考试招生全面实行“文化+技能”考试招生，按照专业平行志愿投档录取。
+　　此外，高水平大学自主选拔、高校专项计划、高水平艺术团、地方专项计划，统一在提前录取的最后一天进行，其最低文化要求不低于我省第一段分数线。
+
+## 新高考艺体类招生
+- 新高考艺体类招生录取批次有调整。其中，艺术类第一批（以专业校考为主）实行传统志愿；艺术类第二批合并专业省统考的原二、三批，体育类原两批合并为一批录取，均实行专业平行志愿，分段填报志愿和录取。
+艺体类专业术科考试及综合分合成按原办法执行；考生位次按综合分成绩分类别确定，综合分成绩相同时，按专业科成绩、普通类专业文化成绩排序确定。艺体类招生录取办法原则上保持稳定，不能兼报普通类提前录取志愿，但可根据条件兼报普通类平行志愿，录取时先艺体类后普通类。
+
+## 普通类考生高考录取方案新变化
+- 不分文理科，按选考科目要求填报
+- 不分批次，分段填报志愿和录取
+- 平行志愿以专业为单位(可以填报80个志愿)
+
+## 如何填报志愿
+- 初筛
+  - 考生可以登录浙江省教育考试网(http://www.zjzs.net/app/portal/index.html)，按照自己七选三的科目，在《2017年拟在浙招生普通高校专业(类)选考科目范围》(http:/zt.zjzs.net/xuanke/)中筛选出可以报考的学校和专业，按地域学校专业列表排序；
+
+- 精挑
+  - 依次查询该校该专业在浙江省近三年的录取情况(可以参看阳光高考平台http://gaokao.chsi.com.cn/)，按照省内位次排序，去掉一些明显自己不愿意就读的专业学校；
+
+- 细选
+  - 按照自己的省内位次，结合自己的意愿、学校的地域、专业发展可能等细选出三类志愿——第一类可以冲一下的志愿，一般建议不要超过30%也就是24个志愿；第二类就是较为稳妥的志愿，建议用50%，40个志愿；最后一类剩下16个志愿就需要保一下了。
+## 特别提醒
+- 重视各院校的招生章程，关注某些专业的特殊要求(比如外语单科成绩要求，或者某门学科科目的学考要求等)，尽量在确认志愿前联系相关高校招生咨询处明确专业有没有特殊要求；也要关注名校的冷门专业和普通高校的强势专业的选择。
+
+- 建议先可以定10个左右的学校，再从这些学校里定专业。因为现在大部分学校是综合性大学，很多专业都比较雷同
+- 没有了专业服从，也就不用担心调剂到不喜欢的专业了。
+- 浙江省教育考试网（www.zjzs.net）是在浙高考考生填报志愿的唯一网站。
+
+## 参考网站
+  - 高考网:http://www.gaokao.com
+
+# Thank you!
+
+
+            </section>
+
+            <!-- footer and other decorations -->
+            <p class="deck-status deck-progress-10">
+                <span class="deck-status-current"></span> / <span class="deck-status-total"></span> − <span class="var-author">automatically replaced by the author</span> − <span class="var-title">automatically replaced by the title</span>
+            </p>
+
+
+        </div>
+    </body>
+
+</html>

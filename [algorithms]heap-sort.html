@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+            
+        <title>My slides:Algorithms[2017.5]</title>
+
+        <meta name="author" content="author: hcy">
+        <meta name="date" content="date: 2017-05-12">
+
+        <style type="text/css">
+            /* custom css can be written here, some examples provided */
+            
+            /* for the base demo */
+            .in-red {color: red !important; text-decoration: underline;}
+            
+            /* for the svg demo */
+            svg .in-red {fill: darkred; fill-opacity: .5; stroke: white;}
+            
+            .dense {font-size: 66%;}
+
+            /* a few nicer slides */
+            .blackbg {background: black !important;}
+            .title-slide ul li { list-style: none; }
+            .title-slide ul {
+                font-size: 20px; color: darkgrey;
+                text-align: center;
+                position: absolute; bottom: 50px; left:0; right: 0;
+            }
+
+            /* for the container styling demo */
+            .bgred {background: #FAA !important;}
+            .zoomed-out {
+                transform: rotate(45deg) scale(0.5, 0.5);
+                transition: 1s transform;
+            }
+            /* show last sub slide */
+            .deck-container.lastsubslide:not(.no-status)::after {
+               position: absolute;
+               right: 0; bottom: 0;
+               content: "⛶";
+               color: grey;
+               font-size: 40px;
+            }
+        </style>
+
+
+	<script src="deck-packed.js"></script>
+        <script>
+            var cssAndJs = ["light-red-dense.css"]; // include the theme (can add any css or js to the list)
+            var options = {}; // to override default deck.js options
+            includedeck(cssAndJs, options);
+        </script>
+    </head>
+    <body>
+        <div class="deck-container">
+
+            <!-- splash screen when loading -->
+            <div class="deck-loading-splash" style="background: black; color: chartreuse;">
+                <span class="vcenter" style="font-size: 30px; font-family: Arial; ">Please wait, while the deck is loading…</span>
+            </div>
+
+
+            <!-- --------------------------- -->
+            <!-- slides in extended markdown -->
+
+
+            <section class="smart">
+# Welcome
+
+## 堆
+- 二叉堆
+  - 完全二叉树
+- 特性：
+  - 1．父结点的键值总是大于或等于（小于或等于）任何一个子节点的键值。
+  - 2．每个结点的左子树和右子树都是一个二叉堆（都是最大堆或最小堆）。
+- 最大堆
+  - 当父结点的键值总是大于或等于任何一个子节点的键值时为最大堆
+- 最小堆  
+  - 当父结点的键值总是小于或等于任何一个子节点的键值时为最小堆。
+## 最小堆
+![最小堆](images/heap/minheap.gif)
+
+## 堆的存储
+- 数组来表示堆，i结点的父结点下标就为(i – 1) / 2。它的左右子结点下标分别为2 * i + 1和2 * i + 2。如第0个结点左右子结点下标分别为1和2。
+![堆的存储](images/heap/store-heap.gif)
+
+## 堆排序的思想
+- 利用最大堆堆顶记录的是最大关键字这一特性，使得每次从无序中选择最大记录变得简单。
+- 基本思想为(最大堆)：
+  - 1)将初始待排序关键字序列(R1,R2....Rn)构建成最大堆，此堆为初始的无序区；
+  - 2)将堆顶元素R[1]与最后一个元素R[n]交换，此时得到新的无序区(R1,R2,......Rn-1)和新的有序区(Rn),且满足R[1,2...n-1]<=R[n]; 
+  - 3)由于交换后新的堆顶R[1]可能违反堆的性质，因此需要对当前无序区(R1,R2,......Rn-1)调整为新堆，然后再次将R[1]与无序区最后一个元素交换，得到新的无序区(R1,R2....Rn-2)和新的有序区(Rn-1,Rn)。不断重复此过程直到有序区的元素个数为n-1，则整个排序过程完成。
+## 操作过程
+- 1.初始化堆：将R[1..n]构造为堆；
+- 2.将当前无序区的堆顶元素R[1]同该区间的最后一个记录交换，然后将新的无序区调整为新的堆。
+- 最重要的两个操作就是构造初始堆和调整堆，其实构造初始堆事实上也是调整堆的过程，只不过构造初始堆是对所有的非叶节点都进行调整。
+
+## 举例
+- 给定一个整形数组a[]={16,7,3,20,17,8}，对其进行堆排序。
+- 构建一个完全二叉树
+![最小堆](images/heap/0.jpg)
+
+## 构造初始堆 Step 1
+- 从最后一个非叶节点开始调整,调整所有非叶节点，调整过程如下：
+![最小堆](images/heap/0.jpg)
+![最小堆](images/heap/1.jpg)
+
+## Step 2
+![最小堆](images/heap/0.jpg)
+![最小堆](images/heap/1.jpg)
+![最小堆](images/heap/2.jpg)
+## Step 3
+![最小堆](images/heap/2.jpg)
+![最小堆](images/heap/3.jpg)
+## Step 4
+- 20和16交换后导致16不满足堆的性质，因此需重新调整
+![最小堆](images/heap/3.jpg)
+![最小堆](images/heap/4.jpg)
+- 初始堆完成
+
+## 小结：初始堆
+- 每次调整都是从父节点、左孩子节点、右孩子节点三者中选择最大者跟父节点进行交换
+- 交换之后可能造成被交换的孩子节点不满足堆的性质，因此每次交换之后要重新对被交换的孩子节点进行调整
+
+## 堆排序
+- 有了初始堆之后就可以进行排序了
+![最小堆](images/heap/heapsort1.jpg)
+- 但此时3位于堆顶不满堆的性质，则需调整继续调整
+
+## 堆排序-调整
+![最小堆](images/heap/heapsort1.jpg)
+![最小堆](images/heap/heapsort1-1.jpg)
+![最小堆](images/heap/heapsort1-2.jpg)
+
+##  堆排序-取出第2个数
+![最小堆](images/heap/heapsort2.jpg)
+- 但此时3再次位于堆顶不满堆的性质，则需调整继续调整
+
+## 堆排序-调整
+![最小堆](images/heap/heapsort2.jpg)
+![最小堆](images/heap/heapsort2-1.jpg)
+![最小堆](images/heap/heapsort2-2.jpg)
+
+## 然后继续...
+
+## 最后整个区间便已经有序了。
+- 从上述过程可知，堆排序其实也是一种选择排序，是一种树形选择排序。只不过直接选择排序中，为了从R[1...n]中选择最大记录，需比较n-1次，然后从R[1...n-2]中选择最大记录需比较n-2次。事实上这n-2次比较中有很多已经在前面的n-1次比较中已经做过，而树形选择排序恰好利用树形的特点保存了部分前面的比较结果，因此可以减少比较次数。对于n个关键字序列，最坏情况下每个节点需比较log2(n)次，因此其最坏情况下时间复杂度为nlogn。堆排序为不稳定排序，不适合记录较少的排序。
+
+# Thank you!
+
+
+            </section>
+
+            <!-- footer and other decorations -->
+            <p class="deck-status deck-progress-10">
+                <span class="deck-status-current"></span> / <span class="deck-status-total"></span> − <span class="var-author">automatically replaced by the author</span> − <span class="var-title">automatically replaced by the title</span>
+            </p>
+
+
+        </div>
+    </body>
+
+</html>

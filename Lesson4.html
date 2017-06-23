@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+            
+        <title>My slides:信息技术[2017.4]</title>
+
+        <meta name="author" content="author: hcy">
+        <meta name="date" content="date: 2017-04-23">
+
+        <style type="text/css">
+            /* custom css can be written here, some examples provided */
+            
+            /* for the base demo */
+            .in-red {color: red !important; text-decoration: underline;}
+            
+            /* for the svg demo */
+            svg .in-red {fill: darkred; fill-opacity: .5; stroke: white;}
+            
+            .dense {font-size: 66%;}
+
+            /* a few nicer slides */
+            .blackbg {background: black !important;}
+            .title-slide ul li { list-style: none; }
+            .title-slide ul {
+                font-size: 20px; color: darkgrey;
+                text-align: center;
+                position: absolute; bottom: 50px; left:0; right: 0;
+            }
+
+            /* for the container styling demo */
+            .bgred {background: #FAA !important;}
+            .zoomed-out {
+                transform: rotate(45deg) scale(0.5, 0.5);
+                transition: 1s transform;
+            }
+            /* show last sub slide */
+            .deck-container.lastsubslide:not(.no-status)::after {
+               position: absolute;
+               right: 0; bottom: 0;
+               content: "⛶";
+               color: grey;
+               font-size: 40px;
+            }
+        </style>
+
+
+	<script src="deck-packed.js"></script>
+        <script>
+            var cssAndJs = ["light-red-dense.css"]; // include the theme (can add any css or js to the list)
+            var options = {}; // to override default deck.js options
+            includedeck(cssAndJs, options);
+        </script>
+    </head>
+    <body>
+        <div class="deck-container">
+
+            <!-- splash screen when loading -->
+            <div class="deck-loading-splash" style="background: black; color: chartreuse;">
+                <span class="vcenter" style="font-size: 30px; font-family: Arial; ">Please wait, while the deck is loading…</span>
+            </div>
+
+
+            <!-- --------------------------- -->
+            <!-- slides in extended markdown -->
+
+
+            <section class="smart">
+# Welcome
+
+# Lesson4
+
+
+## 循环结构(do while...loop)
+```basic
+do while 条件
+  语句
+loop
+{slide}
+```
+
+## 循环结构(do while...loop)
+- 例：列表框添加10个1
+<div>
+<div id="leftdiv" style="width: 45%; float: left; font-size: 20px;">
+```basic
+Dim i as integer
+for i=1 to 10 step 1 
+  List1.AddItem "1"
+next i 
+{slide}
+```
+</div>
+<div id="rightdiv" style="width: 45%; float: right; font-size: 20px;">
+```basic
+Dim i as integer
+i=1
+do while i<=10
+  List1.AddItem "1"
+  i=i+1
+loop
+{slide}
+```
+</div>
+</div>
+
+## 循环结构(do while...loop)
+- 阅读程序
+
+<div>
+<div id="leftdiv" style="width: 45%; float: left; font-size: 20px;">
+```basic
+i=1
+do while i< 10
+  List1.AddItem str(i)
+  i=i+1
+loop
+{slide}
+```
+</div>
+<div id="rightdiv" style="width: 45%; float: right; font-size: 20px;">
+```
+1
+2
+3
+4
+5
+6
+7
+8
+9
+{slide}
+```
+</div>
+</div>
+
+## 循环结构(do while...loop)
+- 阅读程序
+<div>
+<div id="leftdiv" style="width: 45%; float: left; font-size: 20px;">
+```basic
+i=1
+do while i< 10
+  List1.AddItem str(i)
+  i=i+2
+loop
+{slide}
+```
+</div>
+<div id="rightdiv" style="width: 45%; float: right; font-size: 20px;">
+```
+1
+3
+5
+7
+9
+{slide}
+```
+</div>
+</div>
+
+## 循环结构(do while...loop)
+- 阅读程序
+```basic
+i=10
+do while i< 1
+  List1.AddItem str(i)
+  i=i+2
+loop
+{slide}
+```
+
+```
+List1无变化
+{slide}
+```
+
+## 循环结构(do while...loop)
+- 阅读程序
+```basic
+i=10
+do while i>1
+  List1.AddItem str(i)
+loop
+{slide}
+```
+```
+死循环
+{slide}
+```
+
+## 循环结构(do while...loop)
+- 阅读程序
+<div>
+<div id="leftdiv" style="width: 45%; float: left; font-size: 20px;">
+```basic
+i=10
+do while i>1
+  List1.AddItem str(i)
+  i=i+2
+loop
+{slide}
+```
+</div>
+<div id="rightdiv" style="width: 45%; float: right; font-size: 20px;">
+```
+10
+12
+14
+16
+...
+...
+无限循环下去
+{slide}
+```
+</div>
+</div>
+
+## 循环结构(do while...loop)
+- 阅读程序
+<div>
+<div id="leftdiv" style="width: 45%; float: left; font-size: 20px;">
+```basic
+i=10
+do while i>1
+  List1.AddItem str(i)
+  i=i-2
+loop
+{slide}
+```
+</div>
+<div id="rightdiv" style="width: 45%; float: right; font-size: 20px;">
+```
+10
+8
+6
+4
+2
+{slide}
+```
+</div>
+</div>
+
+## 二重循环
+<div>
+<div id="leftdiv" style="width: 60%; float: left; font-size: 20px;">
+```basic
+For i=1 to 3 step 1
+  For j=1 to 2 step 1
+    List1.AddItem str(i)+" "+str(j)
+  Next j  
+Next i  
+{slide}
+
+```
+</div>
+<div id="rightdiv" style="width: 30%; float: right; font-size: 20px;">
+```
+1 1
+1 2
+2 1
+2 2
+3 1
+3 2
+{slide}
+```
+</div>
+</div>
+
+## 阅读程序1
+<div>
+<div id="leftdiv" style="width: 45%; float: left; font-size: 20px;">
+```basic
+s=0
+For i=1 to 3 step 1
+  For j=1 to 2 step 1
+    s=s+j;
+  Next j  
+Next i  
+{slide}
+```
+</div>
+<div id="rightdiv" style="width: 45%; float: right; font-size: 20px;">
+```
+9
+{slide}
+```
+</div>
+</div>
+
+## 阅读程序2
+<div>
+<div id="leftdiv" style="width: 45%; float: left; font-size: 20px;">
+```basic
+s=0
+For i=1 to 3 step 1
+  For j=1 to 2 step 1
+    s=s+i;
+  Next j  
+Next i  
+{slide}
+```
+</div>
+<div id="rightdiv" style="width: 45%; float: right; font-size: 20px;">
+```
+12
+{slide}
+```
+</div>
+</div>
+
+## 阅读程序3
+<div>
+<div id="leftdiv" style="width: 45%; float: left; font-size: 20px;">
+```basic
+s=0
+For i=1 to 3 step 1
+  s=s+i
+  For j=1 to 2 step 1
+    s=s+j;
+  Next j  
+Next i  
+{slide}
+```
+</div>
+<div id="rightdiv" style="width: 45%; float: right; font-size: 20px;">
+```
+15
+{slide}
+```
+</div>
+</div>
+
+##数组
+- 存储一批同类型的数据{slide}
+- 定义：{slide}
+
+```basic
+Dim 数组名(A1 To A2) as 元素类型
+Dim a(1 To 50) as integer
+{slide}
+```
+
+- 或{slide}
+```basic
+Dim 数组名(N) as 元素类型
+Dim a(50) as integer
+{slide}
+```
+- 区别{slide}
+  - a(1),a(2),a(3)...a(50)
+  - a(0),a(1),a(2),a(3)...a(50)
+
+##数组元素
+- a(1),a(2),a(3)...可以像普通变量一样使用{slide}
+- 数组元素赋值：{slide}
+  ```
+    a(1)=10
+    {slide}
+  ```    
+- 使用数组元素:{slide}
+  ```
+    Text1.Text=str(a(2))
+    {slide}
+  ```  
+- 数组元素里面的数一次只能操作一个，如果要对里面的元素整体操作就需要利用循环语句依次对每一个元素操作{slide}
+
+```basic
+Dim a(1 To 5) as integer
+Dim i as integer
+randomize
+For i=1 to 5 step 1
+  a(i)=1
+Next i
+{slide}
+```
+
+## 数组
+- 随机生成10个[50,100]的整数{slide}
+```basic
+Dim a(1 To 10) as integer
+Dim i as integer
+randomize
+For i=1 to 10 step 1
+  __________
+Next i
+{slide}
+```
+
+```basic
+a(i)=50+Int(Rnd()*51)
+{slide}
+```
+
+## 作业
+- P51-P81
+
+# Thank you!
+
+
+            </section>
+
+            <!-- footer and other decorations -->
+            <p class="deck-status deck-progress-10">
+                <span class="deck-status-current"></span> / <span class="deck-status-total"></span> − <span class="var-author">automatically replaced by the author</span> − <span class="var-title">automatically replaced by the title</span>
+            </p>
+
+
+        </div>
+    </body>
+
+</html>

@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+            
+        <title>My slides:Algorithms[2017.6]</title>
+
+        <meta name="author" content="author: hcy">
+        <meta name="date" content="date: 2017-06-16">
+
+        <style type="text/css">
+            /* custom css can be written here, some examples provided */
+            
+            /* for the base demo */
+            .in-red {color: red !important; text-decoration: underline;}
+            
+            /* for the svg demo */
+            svg .in-red {fill: darkred; fill-opacity: .5; stroke: white;}
+            
+            .dense {font-size: 66%;}
+
+            /* a few nicer slides */
+            .blackbg {background: black !important;}
+            .title-slide ul li { list-style: none; }
+            .title-slide ul {
+                font-size: 20px; color: darkgrey;
+                text-align: center;
+                position: absolute; bottom: 50px; left:0; right: 0;
+            }
+
+            /* for the container styling demo */
+            .bgred {background: #FAA !important;}
+            .zoomed-out {
+                transform: rotate(45deg) scale(0.5, 0.5);
+                transition: 1s transform;
+            }
+            /* show last sub slide */
+            .deck-container.lastsubslide:not(.no-status)::after {
+               position: absolute;
+               right: 0; bottom: 0;
+               content: "⛶";
+               color: grey;
+               font-size: 40px;
+            }
+        </style>
+
+
+	<script src="deck-packed.js"></script>
+        <script>
+            var cssAndJs = ["light-red-dense.css"]; // include the theme (can add any css or js to the list)
+            var options = {}; // to override default deck.js options
+            includedeck(cssAndJs, options);
+        </script>
+    </head>
+    <body>
+        <div class="deck-container">
+
+            <!-- splash screen when loading -->
+            <div class="deck-loading-splash" style="background: black; color: chartreuse;">
+                <span class="vcenter" style="font-size: 30px; font-family: Arial; ">Please wait, while the deck is loading…</span>
+            </div>
+
+
+            <!-- --------------------------- -->
+            <!-- slides in extended markdown -->
+
+
+            <section class="smart">
+# Welcome
+
+# 约瑟夫问题
+
+## 问题描述
+
+n个人(编号为0,1,...,n-1)围成一个圈子，从0号开始依次报数，每数到第m个人，这个人就得自杀，之后从下个人开始继续报数，直到所有人都死亡为止。问最后一个死的人的编号(其实看到别人都死了之后最后剩下的人可以选择不自杀……)。
+
+## 常规解法
+- 数组模拟，时间复杂度O(m*n){slide}
+- 链表模拟，时间复杂度O(m*n){slide}
+
+
+## 优化解法1
+- 以n=5, m=3为例，一开始有这么5个人，求最后剩下之人的编号{slide}
+```
+0 1 2 3 4
+{slide}
+```
+- 第一轮报数后2号死亡，圈子里剩下来的人的编号是这些：{slide}
+```
+3 4 0 1
+{slide}
+```
+
+- 这里把3号写在最前面了，因为轮到3开始报数。{slide}
+
+- 此时剩下n=4人，原问题就变成求该子问题的解 {slide}
+
+## 优化解法1
+- n=4时的子问题是求如下情况下剩下之人的编号
+```
+0 1 2 3
+{slide}
+```
+- 将圈子里的所有数x处理一下，变换成(x+3) mod 5，得到：{slide}
+```
+0 1 2 3 -- 3 4 0 1
+{slide}
+```
+- 这个恰好就是n=5时第一轮结束后的圈子状态，也就是说我们可以根据n=4的答案推出n=5时的答案。{slide}
+
+## 优化解法1
+- 手工演算一下就能发现n=z时的圈子第一轮结束后(即m-1号自杀后)的圈子状态，可以由n=z-1的初始圈子施以变换x -> (x+m) mod z得到。于是我们可以从n=1开始(此时的答案是0)，推出n=2的答案，再推出n=3，直到计算到所要求的n。{slide}
+- 设f(n)为初始有n人时最后一个自杀的人的编号，那么有如下递推式：{slide}
+```    
+f(n) = (f(n-1) + m) mod n
+{slide}
+
+```
+- 初始状态{slide}
+```
+f(1)=0
+{slide}
+```
+## 优化解法1
+- 代码
+```pascal
+s := 0;
+for i := 2 to n do
+  s := (s + m) mod i;
+writeln(s);
+{slide}
+```
+- 时间复杂度:O(n){slide}
+
+## 优化解法2
+- 换一个递推思路，考虑报数过程又回到第0个人时会发生什么。这时有 (n div m) *m个人都已经报过数了，并且死了 n div m 人。之后一轮的报数会数过m个人，又会回到第0个人。{slide}
+
+- 我们以n=8, m=3为例看看会发生什么。一开始：{slide}
+
+```
+0 1 2 3 4 5 6 7
+{slide}
+```
+- n div 3*3个人都报过数后：{slide}
+
+```
+0 1 x 3 4 x 6 7  (A)
+{slide}
+```
+## 优化解法2
+```
+0 1 x 3 4 x 6 7  (A)
+```
+- 此时2号和5号死亡，接下来轮到6号开始报数。因为还剩下6个人，我们设法做一个变换把编号都转换到0~5：{slide}
+```
+2 3 x 4 5 x 0 1  (B)
+            ___
+
+{slide}
+```
+- (B)的答案等于规模缩小后的情况n'=6时最后一个人的编号s。但需要根据s算出圈子状态(A)的最后一个人的编号s2。{slide}
+
+## 优化解法2
+
+- 如果s在最后一个x后面(带下划线)，即s < n mod m，那么s2 = s-n mod m+n；否则s2 = s-n mod m+(s-n mod m) div (m-1)；{slide}
+- 注意如果n < m，那么报数回到第一个人时还没死过人。因为子问题的规模没有减小，所以上述方法不适用。需要用之前时间复杂度O(n)的方法递推。{slide}
+
+## 优化解法2
+```pascal
+function rec(n,m:integer)
+begin
+  if (m=1) then exit(n-1);
+  if (n = 1) then exit(0);
+  if (n < m) then 
+    exit((rec(n - 1, m) + m) mod n);
+  s := rec(n - n div m, m) - n mod m;
+  if s < 0 then  exit(s + n)
+  else exit(s + s div (m-1));
+end
+{slide}
+```
+- 时间复杂度:log(n){slide}
+
+# Thank you!
+
+
+            </section>
+
+            <!-- footer and other decorations -->
+            <p class="deck-status deck-progress-10">
+                <span class="deck-status-current"></span> / <span class="deck-status-total"></span> − <span class="var-author">automatically replaced by the author</span> − <span class="var-title">automatically replaced by the title</span>
+            </p>
+
+
+        </div>
+    </body>
+
+</html>

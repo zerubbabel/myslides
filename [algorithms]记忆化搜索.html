@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+            
+        <title>My slides:Algorithms[2017.5]</title>
+
+        <meta name="author" content="author: hcy">
+        <meta name="date" content="date: 2017-05-05">
+
+        <style type="text/css">
+            /* custom css can be written here, some examples provided */
+            
+            /* for the base demo */
+            .in-red {color: red !important; text-decoration: underline;}
+            
+            /* for the svg demo */
+            svg .in-red {fill: darkred; fill-opacity: .5; stroke: white;}
+            
+            .dense {font-size: 66%;}
+
+            /* a few nicer slides */
+            .blackbg {background: black !important;}
+            .title-slide ul li { list-style: none; }
+            .title-slide ul {
+                font-size: 20px; color: darkgrey;
+                text-align: center;
+                position: absolute; bottom: 50px; left:0; right: 0;
+            }
+
+            /* for the container styling demo */
+            .bgred {background: #FAA !important;}
+            .zoomed-out {
+                transform: rotate(45deg) scale(0.5, 0.5);
+                transition: 1s transform;
+            }
+            /* show last sub slide */
+            .deck-container.lastsubslide:not(.no-status)::after {
+               position: absolute;
+               right: 0; bottom: 0;
+               content: "⛶";
+               color: grey;
+               font-size: 40px;
+            }
+        </style>
+
+
+	<script src="deck-packed.js"></script>
+        <script>
+            var cssAndJs = ["light-red-dense.css"]; // include the theme (can add any css or js to the list)
+            var options = {}; // to override default deck.js options
+            includedeck(cssAndJs, options);
+        </script>
+    </head>
+    <body>
+        <div class="deck-container">
+
+            <!-- splash screen when loading -->
+            <div class="deck-loading-splash" style="background: black; color: chartreuse;">
+                <span class="vcenter" style="font-size: 30px; font-family: Arial; ">Please wait, while the deck is loading…</span>
+            </div>
+
+
+            <!-- --------------------------- -->
+            <!-- slides in extended markdown -->
+
+
+            <section class="smart">
+# Welcome
+
+## 问题 - 桐桐的递归函数  
+桐桐经常找一些很有趣的数学书来阅读以增长自己的数学知识。
+一天，他偶然发现一个递归函数w(a,b,c)有以下性质：
+如果a < = 0 or b<=0 or c<=0就返回值1；
+如果a>20 or b>20 or c>20就返回w(20,20,20)；
+如果a< b并且b< c就返回w(a,b,c-1)+w(a,b-1,c-1)-w(a,b-1,c)；
+其它情况就返回w(a-1,b,c)+w(a-1,b-1,c)+w(a-1,b,c-1)-w(a-1,b-1,c-1)。
+桐桐想通过编程求出这个简单的递归函数的值，可是他在编程的时候遇到了一些困难。
+你能帮助他吗？
+
+输入格式：
+输入一行三个整数a，b，c,之间用一个空格隔开，-50≤a,b,c≤50。
+
+输出格式：
+a，b，c三个整数所对应的w(a,b,c)函数的值。要求以格式“w(a, b, c)=函数的值”来
+输出。
+
+样例输入：
+1 1 1
+
+样例输出：
+w(1, 1, 1) = 2
+
+## 如何解决
+- 递归{slide}
+- 记忆化搜索{slide}
+
+## 背包
+
+【问题描述】
+一个旅行者有一个最多能用m公斤的背包，现在有n件物品，它们的重量分别是W1，W2，...,Wn,它们的价值分别为C1,C2,...,Cn。若每种物品只有一件，求旅行者能获得最大总价值。
+
+【输入格式】
+第一行：两个整数，M(背包容量，M<=200)和N(物品数量，N<=30)；
+第2..N+1 行：每行二个整数Wi,Ci，表示每个物品的重量和价值。
+【输出格式】 
+仅一行，一个数，表示最大总价值。
+
+【样例输入】
+```
+10 4
+2 1
+3 3
+4 5
+7 9
+{dense}
+```
+
+【样例输出】
+12
+## 01背包问题
+- DP{slide}
+- 记忆化搜索??{slide}
+
+## 记忆化搜索 实现 01背包问题
+- 如何搜索？{slide}
+  - DFS(i,j) : 背包重量为j，考察了i个物品的价值{slide}
+- 如何记忆化?{slide}
+  - f[i,j]记录背包重量为j，考察了i个物品的价值{slide}
+- 时间复杂度{slide}
+  - 搜索：O(2^N){slide}
+  - 记忆化：O(N*M) {slide}
+- 记忆化的优势:{slide}
+  - 它的形式就是在我们原本搜索的形式上加了2句语句，但时间复杂度算法却与动规不相上下。  {slide}
+
+
+## 最小步数
+从起点到终点有 N 步,如果“走”第 K 步,将会得到 A[K]元钱,A[K]可能为负数。
+你也可以花 100 元钱“跳过”当前的这一步,即不会得到 A[K]。但是任何时刻身上的钱都
+必须是非负的。开始时,你身上共有 0 元。给定数组 A,求在能到达终点的情况下最小需要
+走过(即不是用 100 元钱跳过)的步数。注意:最后一步必须走,不能选择跳过。
+
+输入格式(steps.in):
+共有两行。
+第一行为整数 N(0<=N<=100)。
+第二行有 N 个整数,第 K 个数为 A[K],-10000<=A[K]<=10000,。
+
+输出格式(steps.out):
+一个整数,表示需要走的最少步数。若无法走到终点,输出-1。
+样例:
+输入
+```
+6
+30 30 30 30 30 30
+{dense}
+```
+输出
+5
+
+## 最小步数-分析
+- 搜索{slide}
+  - 每一步只有两种情况:走或跳(不走){slide}
+  - 程序时间复杂度大约是(2^n){slide}
+- 剪枝{slide}
+  - 求的“最少”步数,搜索时,若此时的走的步数已大于等于目前求出来的最少步数,就直退出此时的搜索。{slide}
+  - 优化的力度有限的{slide}
+- 记忆化搜索{slide}
+  - 类似于背包问题,把步数和钱数作为状态来优化搜索{slide}
+  - f[i,j]来记录走到第i步用了j元钱所需要走的最少步数{slide}
+  - 或者：f[i,j]来记录走到第i步用了最少走了j步的最大钱数(因为钱越多越好,可以一直跳啊跳){slide}
+- 动态规划DP  {slide}
+
+# Thank you!
+
+
+            </section>
+
+            <!-- footer and other decorations -->
+            <p class="deck-status deck-progress-10">
+                <span class="deck-status-current"></span> / <span class="deck-status-total"></span> − <span class="var-author">automatically replaced by the author</span> − <span class="var-title">automatically replaced by the title</span>
+            </p>
+
+
+        </div>
+    </body>
+
+</html>

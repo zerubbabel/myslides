@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+            
+        <title>My slides:Algorithms[2017.4]</title>
+
+        <meta name="author" content="author: hcy">
+        <meta name="date" content="date: 2017-04-28">
+
+        <style type="text/css">
+            /* custom css can be written here, some examples provided */
+            
+            /* for the base demo */
+            .in-red {color: red !important; text-decoration: underline;}
+            
+            /* for the svg demo */
+            svg .in-red {fill: darkred; fill-opacity: .5; stroke: white;}
+            
+            .dense {font-size: 66%;}
+
+            /* a few nicer slides */
+            .blackbg {background: black !important;}
+            .title-slide ul li { list-style: none; }
+            .title-slide ul {
+                font-size: 20px; color: darkgrey;
+                text-align: center;
+                position: absolute; bottom: 50px; left:0; right: 0;
+            }
+
+            /* for the container styling demo */
+            .bgred {background: #FAA !important;}
+            .zoomed-out {
+                transform: rotate(45deg) scale(0.5, 0.5);
+                transition: 1s transform;
+            }
+            /* show last sub slide */
+            .deck-container.lastsubslide:not(.no-status)::after {
+               position: absolute;
+               right: 0; bottom: 0;
+               content: "⛶";
+               color: grey;
+               font-size: 40px;
+            }
+        </style>
+
+
+	<script src="deck-packed.js"></script>
+        <script>
+            var cssAndJs = ["light-red-dense.css"]; // include the theme (can add any css or js to the list)
+            var options = {}; // to override default deck.js options
+            includedeck(cssAndJs, options);
+        </script>
+    </head>
+    <body>
+        <div class="deck-container">
+
+            <!-- splash screen when loading -->
+            <div class="deck-loading-splash" style="background: black; color: chartreuse;">
+                <span class="vcenter" style="font-size: 30px; font-family: Arial; ">Please wait, while the deck is loading…</span>
+            </div>
+
+
+            <!-- --------------------------- -->
+            <!-- slides in extended markdown -->
+
+
+            <section class="smart">
+# Welcome
+
+## 问题 - 好友
+```
+假如已知有n个人和m对好友关系。如果两个人是直接或间接的好友（好友的好友的好友...），则认为他们属于同一个朋友圈，请写程序求出这n个人里一共有多少个朋友圈。
+假如：n = 5 ， m = 3 ， r = {{1 , 2} , {2 , 3} , {4 , 5}}，表示有5个人，1和2是好友，2和3是好友，4和5是好友，则1、2、3属于一个朋友圈，4、5属于另一个朋友圈，结果为2个朋友圈。
+输入：输入包含多个测试用例，每个测试用例的第一行包含两个正整数 n、m,然后输入m对好友关系。输入0时结束。
+输出：对应每个测试用例，输出在这n个人里一共有多少个朋友圈。
+样例输入：
+5 3
+1 2
+2 3
+4 5
+3 3
+1 2
+1 3
+2 3
+0
+样例输出：
+2
+1
+{slide dense}
+```
+## 如何解决
+- 搜索
+  - DFS
+  - BFS
+
+## 动态连通性问题
+- 给定若干个物体。
+  - 合并: 可以给两个物体之间建立连接。
+  - 查找：问某两个物体之间是否存在通路。
+
+
+## 快速查找
+- 数据结构
+  - 数组a[i]记录第i人他所属的圈子编号
+  - 开始时a[i]=i
+  - 同一个圈子的人有什么特征呢？
+    - a[i]相等
+  - 如果p与q是好友，那么需要把这两个圈子的人合并成同一个圈子,如何操作？
+    - 规定q所属的圈子的所有人都要将其所属圈子修改为p的圈子a[p](反之亦可)
+
+## 快速查找
+- 查找
+  - 看a[p]是否等于a[q]  
+- 合并
+  - 将所有a数组中值为a[q]的元素值修改为a[p]
+
+## 快速查找-图的演示
+![0-9](images/0-9.png){dense}
+
+## 快速查找-图的演示
+```
+4 3
+3 8
+6 5
+9 4
+2 1
+5 0
+7 2
+6 1
+1 0
+
+```  
+
+## 快速查找-数组的演示
+
+## 快速查找-程序实现
+
+## 快速查找-复杂度分析
+- 时间复杂度
+  - 合并：O(n){in-red}
+  - 查找：O(1)
+  - n人,m对关系:O(n*m)
+
+- 空间复杂度
+  - O(n)
+
+## 快速合并
+- 思想:每个人看成一个节点，同一个圈子的人构成一棵树，树的根为圈子的编号
+- 数据结构
+  - 数组a[i]记录第i人的父节点编号
+  - 开始时的状态如何?
+    - a[i]=i(每个人的父节点就是自己,此树只有一个根节点)
+  - 同一个圈子的人有什么特征呢？
+    - 所属树的根相等
+  - 如果p与q是好友，那么需要把这两个圈子的人合并成同一个圈子,如何操作？
+    - 规定将q的根的父节点设置为p(反之亦可)
+
+## 快速合并
+- 查找
+  - 看p所在树的根是否等于q所在树的根
+  - 如何知道节点所在树的根？
+    - 一路追溯p的父节点直到a[p]=p  
+- 合并
+  - a[q]=p
+## 快速查找-图的演示
+![0-9](images/0-9.png){dense}
+
+## 快速合并-图的演示
+```
+4 3
+3 8
+6 5
+9 4
+2 1
+5 0
+7 2
+6 1
+1 0
+
+```  
+
+## 快速合并-数组的演示
+
+## 快速合并-程序实现
+
+## 快速合并-复杂度分析
+- 时间复杂度
+  - 合并：O(logn)(先要查找q的根，再一步合并){in-red}
+  - 查找：O(logn)
+  - n人,m对关系:O(logn*m)
+- 空间复杂度
+  - O(n)
+
+## 快速合并-复杂度分析
+-考虑最坏情况
+- 时间复杂度
+  - 合并：O(logn)--O(n){in-red}
+  - 查找：O(logn)--O(n)
+  - n人,m对关系:O(logn*m)--O(n*m)
+- 空间复杂度
+  - O(n)
+
+## 改进1:树重
+- 避免产生太高的树
+- 记录树的节点数量
+- 合并时将小的树合并到大树
+
+## 改进1-图的演示
+![0-9](images/0-9.png){dense}
+
+## 改进1-图的演示
+```
+4 3
+3 8
+6 5
+9 4
+2 1
+5 0
+7 2
+6 1
+1 0
+
+```
+
+
+## 改进1-复杂度分析
+-考虑最坏情况
+- 时间复杂度
+  - 合并：O(logn) {in-red}
+  - 查找：O(logn)
+  - n人,m对关系:O(logn*m)
+- 空间复杂度
+  - O(n)
+
+## 改进1-程序实现
+
+## 改进2-路径压缩
+- 查找到p的父根节点后,马上将查找过程中经过的所有节点指向这个根节点
+
+## 改进2-路径压缩:step 1
+![](images/path-compression1.png)
+
+## 改进2-路径压缩:step 2
+![](images/path-compression2.png)
+
+## 改进2-路径压缩:step 3
+![](images/path-compression3.png)
+
+# Thank you!
+
+
+            </section>
+
+            <!-- footer and other decorations -->
+            <p class="deck-status deck-progress-10">
+                <span class="deck-status-current"></span> / <span class="deck-status-total"></span> − <span class="var-author">automatically replaced by the author</span> − <span class="var-title">automatically replaced by the title</span>
+            </p>
+
+
+        </div>
+    </body>
+
+</html>
