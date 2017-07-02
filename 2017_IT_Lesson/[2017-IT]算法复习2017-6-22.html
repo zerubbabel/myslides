@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+            
+        <title>My slides:信息技术</title>
+
+        <meta name="author" content="author: hcy">
+        <meta name="date" content="date: 2017-06-22">
+
+        <style type="text/css">
+            /* custom css can be written here, some examples provided */
+            
+            /* for the base demo */
+            .in-red {color: red !important; text-decoration: underline;}
+            
+            /* for the svg demo */
+            svg .in-red {fill: darkred; fill-opacity: .5; stroke: white;}
+            
+            .dense {font-size: 66%;}
+
+            /* a few nicer slides */
+            .blackbg {background: black !important;}
+            .title-slide ul li { list-style: none; }
+            .title-slide ul {
+                font-size: 20px; color: darkgrey;
+                text-align: center;
+                position: absolute; bottom: 50px; left:0; right: 0;
+            }
+
+            /* for the container styling demo */
+            .bgred {background: #FAA !important;}
+            .zoomed-out {
+                transform: rotate(45deg) scale(0.5, 0.5);
+                transition: 1s transform;
+            }
+            /* show last sub slide */
+            .deck-container.lastsubslide:not(.no-status)::after {
+               position: absolute;
+               right: 0; bottom: 0;
+               content: "⛶";
+               color: grey;
+               font-size: 40px;
+            }
+        </style>
+
+
+	<script src="deck-packed.js"></script>
+        <script>
+            var cssAndJs = ["light-red-dense.css"]; // include the theme (can add any css or js to the list)
+            var options = {}; // to override default deck.js options
+            includedeck(cssAndJs, options);
+        </script>
+    </head>
+    <body>
+        <div class="deck-container">
+
+            <!-- splash screen when loading -->
+            <div class="deck-loading-splash" style="background: black; color: chartreuse;">
+                <span class="vcenter" style="font-size: 30px; font-family: Arial; ">Please wait, while the deck is loading…</span>
+            </div>
+
+
+            <!-- --------------------------- -->
+            <!-- slides in extended markdown -->
+
+
+            <section class="smart">
+# Welcome
+
+# 冒泡排序
+
+## 冒泡排序算法的基本思想(升序)
+- 把待排序的n个元素的数组看成是垂直堆放的一列数据{slide}
+- 从最下面的一个元素起，自下而上地比较相邻的两个元素中的数据 ，将较小的数据换到上面的一个元素中。重复这一过程，直到处理完最后两个元素中的数据，称为一趟加工。当第一趟加工完成时，最小(大)的数据已经上升到第一个元素的位置。{slide}
+- 对余下的 n－1 个元素重复上述处理过程 ，直至最后余下两个数据的比较和交换。{slide}
+- 由于每一趟加工都是将本趟最小的数元素像气泡一样浮至本趟的顶端位置，所以称作冒泡排序。{slide}
+## 冒泡排序 - 第1趟
+![1](./images/IT/bubble-ex1.png){slide}
+- 第1趟加工共比较3次，交换3次。处理完成后，最小的元素15存储在了c(1)中。{slide}
+## 冒泡排序 - 第2趟
+![2](./images/IT/bubble-ex2.png){slide}
+- 第2趟加工共比较2次，交换1次。处理完成后，最小的元素23存储在了c(1)中。{slide}
+## 冒泡排序 - 第3趟
+![3](./images/IT/bubble-ex3.png){slide}
+
+- 第3趟加工共比较1次，交换0次。处理完成后，最小的元素30存储在了c(1)中。{slide}
+## 冒泡排序 - 总结
+- 4个元素{slide}
+  - 几趟{slide}
+      - 3{slide}
+  - 比较次数{slide}
+      - 3＋2＋1＝6次{slide}
+  - 交换次数{slide}
+      - 不一定，跟原始数据有关，最多6次，最少0次{slide}
+- n个元素{slide}
+  - 几趟{slide}
+      - n-1{slide}
+  - 比较次数{slide}
+      - (n-1)＋(n-2)＋(n-3)+...+1＝n*(n-1)/2次{slide}
+  - 交换次数{slide}
+      - 不一定，跟原始数据有关，最多n-1次，最少0次{slide}
+## 冒泡排序算法的程序实现
+![3](./images/IT/bubble-framework.png){slide}
+```c
+For i=1 to n-1
+  For j=n downto i+1 step -1 
+    if a(j)< a(j-1) then 
+      t=a(j)
+      a(j)=a(j-1)
+      a(j-1)=t
+    End if
+  Next j
+Next i
+{slide}
+```
+
+# 选择排序
+
+## 选择排序-算法的概念
+- 从参加排序数组的所有元素中找出最小(或最大)数据的元素，使它与第一个元素中数据相互交换位置。然后在余下的元素中找出最小(或最大)的数据的元素，与第二个元素中的数据交换位置。以此类推，直到所有元素成为一个有序的序列。{slide}
+## 选择排序-例(升序)1
+```
+d(1) d(2) d(3) d(4)
+105  123  97   72
+```
+- 第1遍
+  - 寻找从d(1)到d(4)范围内的最小数据d(k)，即k＝4，将d(1)与d(k)互换数据{slide}
+  - 共比较数据3次，交换数据1次。{slide}
+```
+d(1) d(2) d(3) d(4)
+72   123  97   105
+{slide}
+```
+## 选择排序-例(升序)2
+```
+d(1) d(2) d(3) d(4)
+72   123  97   105
+```
+- 第2遍
+  - 寻找从d(2)到d(4)范围内的最小数据d(k)，即k＝3，将d(1)与d(k)互换数据{slide}
+  - 共比较数据2次，交换数据1次。{slide}
+```
+d(1) d(2) d(3) d(4)
+72   97   123  105
+{slide}
+```
+## 选择排序-例(升序)3
+```
+d(1) d(2) d(3) d(4)
+72   97   123  105
+```
+- 第3遍
+  - 寻找从d(3)到d(4)范围内的最小数据d(k)，即k＝4，将d(1)与d(k)互换数据{slide}
+  - 共比较数据1次，交换数据1次。{slide}
+```
+d(1) d(2) d(3) d(4)
+72   97   105  123
+{slide}
+```
+## 选择排序-总结
+- 比较次数:
+  - 与冒泡算法一样均为n*(n-1)/2次{slide}
+- 交换的次数{slide}
+  - 比冒泡排序要少，具有较高的效率，最好0次，最差n-1次{slide}
+## 选择排序
+  
+![选择排序程序框架](./images/IT/selection-sort.png){slide}
+
+## 选择排序
+```vb 
+For i=1 to n-1
+  k=i
+  For j=i+1 to n
+    if d(j) < d(k) then k=j
+  Next j
+  if i<>k then t=d(i):d(i)=d(k):d(k)=t
+Next i
+{dense}
+```
+- 当外循环变量i取1时，为第1遍加工{dense slide}
+- k＝1，先假设第1个数据元素为最小值{dense slide}
+- 内循环从第2个数开始比较，如果a(2)小于a(1)，则将a(2)的下标赋值给k，否则k值不变，这个方法目的是保证k是本遍加工最小数据元素的下标。这样，内循环一次完成之后，k记录的就是最小数的下标{dense slide}
+- 判断k是不是a(1)的下标1，如果不是，则把a(k)与a(1)的数据进行交换，否则就不进行交换。这样，第1遍加工后，就能把最小的数据存放在a(1)中。{dense slide}
+- 当外层循环变量i取2时，为第2遍加工 ，找出 a(2)到 a(n)之间的最小数，记录好它的下标k，把最小的数据放到a(2)中。这样 ，每遍加工 ，都能找出最小数的下标k，比较是不是i  ，如果不是，就将a(k)与a(i)交换。经过n－1遍之后，就能实现从小到大的排序。{dense slide}
+
+
+# 查找算法及程序实现
+## 查找
+- 什么是查找{slide}
+  - 查找是一种`查询数据`的技术 ，其目标是能以比较少的步骤或较短时间内找到所需的对象。{slide}
+
+## 顺序查找算法         
+- 顺序查找的基本思想{slide}
+  - 从第一个数据开始 ，按顺序逐个将数据与给定的数据(查找键)进行比较，若某个数据和查找键相等，则查找成功，输出所查数据的位置；反之，输出未找到。{slide}
+
+## 顺序查找  
+- 处理过程{slide}
+  - 假定在数组d中有n个数据，查找键(要查找的数)已经存储在变量key中。其处理过程是：从数组d的第1个元素 d(1) 开始，依次判断各元素的值是否与查找键 key 相等 ，若某个数组元素 d(i)的值等于key，则结束处理(找到了指定的数据)；若找遍了所有的n个元素，无任何元素的值等于key，则结束处理(输出未找到信息)。{slide}
+- 算法流程图{slide}
+![顺序查找流程图](./images/IT/search.png){slide}
+
+## 顺序查找 - 算法框架
+![顺序查找流程图](./images/IT/search-framework.png){slide}
+```
+k=0
+key=val(Text1.text)
+For i=1 to n
+  if key=d(i) then k=i:Exit For
+Next i
+If k=0 then 
+  Label1.caption="未找到"
+else
+  Label1.caption="你要找的数在位置"+str(k)
+End If
+{dense slide}
+```
+
+# 对分查找
+
+## 对分查找(二分查找、折半查找)
+- 前提:被查找的数据序列是有序的(升序或降序){slide}
+- 算法思想{slide}
+  - 在有序的数列中，首先将要查找的数据与有序数列内处于中间位置的数据进行比较，如果两者相等，则查找成功；否则就根据数据的有序性，再确定该数据的范围应该在数列的前半部分还是后半部分；在新确定的缩小范围内，继续按上述方法进行查找，直到找到要查找的数据，即查找成功，如果要查找的数据不存在，即查找不成功。{slide}
+
+## 对分查找 - 过程
+- 初始：key查找键，数组d存放n个已按升序排序的数据，查找范围[i，j]{slide}
+- 与中间数比较：中间位置m=(i+j)/2,然后中间数d(m)与查找键key进行比较{slide}
+  - (1)若key < d(m)，由数组d中的数据的递增性，可以确定：在(m，j)内不可能存在值为key的数据，必须在新的范围(i，m－1)中继续查找；{slide}
+  - (2)key＝d(m)，找到了需要的数据；{slide}
+  - (3)key>d(m)，由与(1)相同的理由，必须在新的范围(m＋1，j)中继续查找。{slide}
+  - 这样，除了出现情况(2)，在通过一次比较后，新的查找范围将不超过上次查找范围的一半。   {slide}
+
+## 对分查找
+```
+key=37
+
+10 18 20 23 28 32 37 45 53 58 61 67 76 84 95 97  (数据)
+1  2  3  4  5  6  7  8  9  10 11 12 13 14 15 16  (下标)
+i                    m                        j  (位置变量)
+{slide}
+```
+```vb
+key < d(m) === > 前半部分继续查找[i,m-1]即[1,7]
+{slide}
+```
+
+## 对分查找
+```
+key=37
+
+10 18 20 23 28 32 37 (数据)
+1  2  3  4  5  6  7  (下标)
+i        m        j  (位置变量)
+{slide}
+```
+```vb
+key > d(m) === > 后半部分继续查找[m+1,j]即[5,7]
+{slide}
+```
+
+## 对分查找
+```
+key=37
+
+28 32 37 (数据)
+5  6  7  (下标)
+i  m  j  (位置变量)
+{slide}
+```
+```vb
+key > d(m) === > 后半部分继续查找[m+1,j]即[7,7]
+{slide}
+```
+
+## 对分查找
+```
+key=37
+
+37 (数据)
+7  (下标)
+i  (位置变量)
+m  (位置变量)
+j  (位置变量)
+{slide}
+```
+```vb
+key = d(m) === > 找到！！
+{slide}
+```
+
+## 对分查找算法描述
+- (1)(确定初始查找范围)i←1，j←n。{slide}
+- (2)(是否能继续查找？)如果i≤j，那么转到(4)。{slide}
+- (3)(找不到)输入出结果0，算法结束。{slide}
+- (4)(计算中点位置)m←(i＋j)\2。{slide}
+- (5)(相等？)如果d(m)＝key，那么转到(7)。{slide}
+- (6)(修改查找范围)如果key < d(m){slide}，那么j←m－1；否则i←m＋1，转到(2)。{slide}
+- (7)(找到)输出结果m，算法结束。{slide}
+
+## 对分查找算法
+![对分查找流程图](./images/IT/binary_search.png){slide}
+
+## 对分查找算法
+![对分查找框架图](./images/IT/binary_search-framework.png){slide}
+```vb
+k=0
+i=1:j=n
+Do while i<=j
+  m=int((i+j)/2)
+  if d(m)=key then k=m:Exit Do
+  if d(m) > key then 
+    i=m+1
+  else
+    j=m-1
+  end If    
+Loop
+if k=0 then 
+  label1.caption="未找到"
+else
+  label1.caption="位置为"+str(k)
+End If
+{slide dense}
+```
+## 对分查找
+- 查找次数
+
+# Thank you!
+
+
+            </section>
+
+            <!-- footer and other decorations -->
+            <p class="deck-status deck-progress-10">
+                <span class="deck-status-current"></span> / <span class="deck-status-total"></span> − <span class="var-author">automatically replaced by the author</span> − <span class="var-title">automatically replaced by the title</span>
+            </p>
+
+
+        </div>
+    </body>
+
+</html>

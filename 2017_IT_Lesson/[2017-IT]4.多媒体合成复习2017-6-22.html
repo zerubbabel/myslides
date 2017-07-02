@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+            
+        <title>My slides:Algorithms[2017.4]</title>
+
+        <meta name="author" content="author: hcy">
+        <meta name="date" content="date: 2017-04-21">
+
+        <style type="text/css">
+            /* custom css can be written here, some examples provided */
+            
+            /* for the base demo */
+            .in-red {color: red !important; text-decoration: underline;}
+            
+            /* for the svg demo */
+            svg .in-red {fill: darkred; fill-opacity: .5; stroke: white;}
+            
+            .dense {font-size: 66%;}
+
+            /* a few nicer slides */
+            .blackbg {background: black !important;}
+            .title-slide ul li { list-style: none; }
+            .title-slide ul {
+                font-size: 20px; color: darkgrey;
+                text-align: center;
+                position: absolute; bottom: 50px; left:0; right: 0;
+            }
+
+            /* for the container styling demo */
+            .bgred {background: #FAA !important;}
+            .zoomed-out {
+                transform: rotate(45deg) scale(0.5, 0.5);
+                transition: 1s transform;
+            }
+            /* show last sub slide */
+            .deck-container.lastsubslide:not(.no-status)::after {
+               position: absolute;
+               right: 0; bottom: 0;
+               content: "⛶";
+               color: grey;
+               font-size: 40px;
+            }
+        </style>
+
+
+	<script src="deck-packed.js"></script>
+        <script>
+            var cssAndJs = ["light-red-dense.css"]; // include the theme (can add any css or js to the list)
+            var options = {}; // to override default deck.js options
+            includedeck(cssAndJs, options);
+        </script>
+    </head>
+    <body>
+        <div class="deck-container">
+
+            <!-- splash screen when loading -->
+            <div class="deck-loading-splash" style="background: black; color: chartreuse;">
+                <span class="vcenter" style="font-size: 30px; font-family: Arial; ">Please wait, while the deck is loading…</span>
+            </div>
+
+
+            <!-- --------------------------- -->
+            <!-- slides in extended markdown -->
+
+
+            <section class="smart">
+# Welcome
+
+# 多媒体创作工具
+
+## 多媒体创作工具
+- 什么是多媒体作品创作工具
+  - 能够对文本、图像、声音、动画、视频等多媒体信息进行集成处理和统一管理，并生成多媒体作品的编辑工具。
+## 多媒体创作工具
+- 以页为基础的创作工具{slide}
+  - PowerPoint{slide}
+  - ![ppt](./images/IT/ppt.png){slide}
+ 
+## 多媒体创作工具
+- 以图标和流程图为基础的创作工具{slide}
+  - Authorware{slide}
+  - ![Authorware](./images/IT/Authorware.png){slide}
+
+## 多媒体创作工具
+- 以时间为基础的创作工具{slide}
+  - Flash{slide}
+  - ![Authorware](./images/IT/flash.png){slide}
+
+## 多媒体创作工具
+- 以程序语言为基础的创作工具{slide}
+  - Visual Basic{slide}
+  - ![Authorware](./images/IT/vb.png){slide}
+
+## Flash - 按钮元件
+![Authorware](./images/IT/btn.png){slide}
+- 什么是按钮元件{slide}
+  - 具有多种形态，会响应鼠标事件，执行制定的动作，是实现动画交互效果的关键对象。一般由“弹起”、“指针经过”、“按下”和“点击”四个帧组成。 {slide}
+  - 弹起帧{slide}
+      - 用于定义当鼠标不接触按钮时，该按钮处于弹起时的状态、外观。{slide}
+  - 指针经过帧{slide}
+      - 当鼠标移动到该按钮上，但没有按下鼠标的状态、外观。{slide}
+  - 按下帧{slide}
+      - 当鼠标移动到该按钮上，并按下鼠标时的状态、外观。{slide}
+  - 点击帧{slide}
+      - 响应鼠标单击的感应区域。{slide}
+
+## Flash动画
+- Flash动画制作过程中可导入的多媒体素材有哪些?
+  - 声音{slide}
+  - 视频{slide}
+  - 动画{slide}
+
+## Flash场景
+- 播放顺序{slide}
+  - 按照场景的先后顺序播放{slide}
+  - 利用指令交互实现不同场景间的跳转{slide}
+- 测试影片与测试场景的不同{slide}
+  - 测试影片：按照整个动画，包括涉及的所有场景{slide}
+  - 测试场景：只播放当前场景{slide}
+
+## 常用影片控制函数
+- 从当前帧开始播放{slide}
+  - play();{slide}
+- 暂停当前播放的动画{slide}
+  - stop();{slide}
+- 播放头转移到指定场景及帧数并继续播放{slide}
+  - gotoAndPlay(“场景名”，帧)；{slide}
+- 播放头转移到指定场景及帧数并暂停播放{slide}
+  - gotoAndStop(“场景名”，帧)；{slide}
+- 停止所有声音{slide}
+  - stopAllSounds( )；{slide}
+- 在浏览器窗口显示指定的URL地址(网页或本地文档){slide}
+  - getURL(url)；{slide}
+- 关闭放映文件{slide}
+  - fscommand(“quit”)；{slide}
+## 常用影片控制函数  
+- 按下鼠标后，完成某一动作{slide}
+```
+on(press){statements;}
+{slide}
+```
+- 释放鼠标后，完成某一动作{slide}
+```
+on(release){statements;}
+{slide}
+```
+
+## 帧命令与按钮命令
+![命令](./images/IT/script-compare.png){slide}
+     
+## Flash作品发布
+- FLA、SWF、HTML、GIF、JPEG、EXE、AVI、Wave{slide}
+- 适合对作品进行后续修改的{slide}
+  - FLA{slide}
+- 作品必须是具有交互功能的{slide}
+  - SWF(小游戏的常用格式){slide}
+- 动态的{slide}
+  - SWF、GIF、AVI {slide}
+
+
+# Thank you!
+
+
+            </section>
+
+            <!-- footer and other decorations -->
+            <p class="deck-status deck-progress-10">
+                <span class="deck-status-current"></span> / <span class="deck-status-total"></span> − <span class="var-author">automatically replaced by the author</span> − <span class="var-title">automatically replaced by the title</span>
+            </p>
+
+
+        </div>
+    </body>
+
+</html>
